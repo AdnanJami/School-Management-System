@@ -3,8 +3,8 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 import os
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql://postgres:kingjami@localhost:5432/school_management"
-)
+    "postgresql://username:password@localhost:5432/school_management"
+    )
 engine = create_engine(DATABASE_URL)
 
 DBSession = sessionmaker(autocommit=False, autoflush=False, bind=engine)
