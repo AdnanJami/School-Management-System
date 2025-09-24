@@ -103,12 +103,103 @@ uvicorn main:app --reload
 
 The application will be available at: `http://localhost:8000`
 
-## 📚 API Documentation
+## 🔧 API Usage Examples
 
-Once the server is running, you can access:
+Here are some common API operations using PowerShell:
 
-- **Interactive API Documentation**: `http://localhost:8000/docs`
-- **Alternative API Documentation**: `http://localhost:8000/redoc`
+### Create a New Student
+
+```powershell
+Invoke-RestMethod -Method POST "http://localhost:8000/students" `
+  -Headers @{ "Content-Type" = "application/json" } `
+  -Body '{
+    "name": "John Kobir",
+    "email": "john.doe@email.com",
+    "student_id": "ST001",
+    "grade_level": 10
+  }'
+```
+
+### Get Student by ID
+
+```powershell
+Invoke-RestMethod -Method GET "http://localhost:8000/students/1"
+```
+
+### Create a New Course
+
+```powershell
+Invoke-RestMethod -Method POST "http://localhost:8000/courses" `
+  -Headers @{ "Content-Type" = "application/json" } `
+  -Body '{
+    "name": "CSE332",
+    "capacity": "32"
+  }'
+```
+
+### Enroll Student to a Course
+
+```powershell
+Invoke-RestMethod -Method POST "http://localhost:8000/students/1/enrol/1"
+```
+
+### Import Scraped Data to Database
+
+```powershell
+Invoke-RestMethod -Method POST "http://localhost:8000/import/scraped"
+```
+
+### Get Scraped Resources from Database
+
+```powershell
+Invoke-RestMethod -Method GET "http://localhost:8000/import/scrapedresources"
+```
+
+### Alternative: Using cURL Commands
+
+For cross-platform compatibility, you can also use cURL:
+
+#### Create Student
+```bash
+curl -X POST "http://localhost:8000/students" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "John Kobir",
+    "email": "john.doe@email.com",
+    "student_id": "ST001",
+    "grade_level": 10
+  }'
+```
+
+#### Get Student by ID
+```bash
+curl -X GET "http://localhost:8000/students/1"
+```
+
+#### Create Course
+```bash
+curl -X POST "http://localhost:8000/courses" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "CSE332",
+    "capacity": "32"
+  }'
+```
+
+#### Enroll Student
+```bash
+curl -X POST "http://localhost:8000/students/1/enrol/1"
+```
+
+#### Import Scraped Data
+```bash
+curl -X POST "http://localhost:8000/import/scraped"
+```
+
+#### Get Scraped Resources
+```bash
+curl -X GET "http://localhost:8000/import/scrapedresources"
+```
 
 ## 🤝 Contributing
 
