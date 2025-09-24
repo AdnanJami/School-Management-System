@@ -2,9 +2,13 @@
 from school.student import Student
 from school.course import Course
 from school.enrolement import Enrolment
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import sessionmaker
+from database import engine
+
+SessionLocal = sessionmaker(bind=engine)
+db_session = SessionLocal() 
 class EnrolmentService:
-    def __init__(self, db_session = Session):
+    def __init__(self, db_session):
         self.db_session = db_session
         
     def enrol_student(self, student_id: int, course_id: int):

@@ -97,9 +97,10 @@ def get_student(student_id: int, db: Session = Depends(get_db)):
     return db_student
 
 @app.post("/students/{student_id}/enrol/{course_id}")
-def enrol_student(student_id: int, course_id: int):
+def enrol_student(student_id: int, course_id: int,db:Session=Depends(get_db)):
+    db_session=db
     try:
-        service= EnrolmentService()
+        service= EnrolmentService(db_session)
         enrolment = service.enrol_student(student_id, course_id)
         return {"message": "Student enrolled successfully", "enrolment_id": enrolment.id}
     except ValueError as e:

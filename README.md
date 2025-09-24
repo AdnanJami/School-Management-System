@@ -92,13 +92,16 @@ Create the database in PostgreSQL:
 ```sql
 CREATE DATABASE school_management;
 ```
-
+## Running Scraper
+```bash
+python scraper.py --pages {number of pages to scrap} {--db to save into database}
+```
 ## 🚦 Running the Application
 
 Start the development server:
 
 ```bash
-uvicorn main:app --reload
+uvicorn fast:app --reload
 ```
 
 The application will be available at: `http://localhost:8000`
@@ -152,7 +155,7 @@ Invoke-RestMethod -Method POST "http://localhost:8000/import/scraped"
 ### Get Scraped Resources from Database
 
 ```powershell
-Invoke-RestMethod -Method GET "http://localhost:8000/import/scrapedresources"
+Invoke-RestMethod -Method GET "http://localhost:8000/scrapedresources"
 ```
 
 ### Alternative: Using cURL Commands
@@ -198,7 +201,7 @@ curl -X POST "http://localhost:8000/import/scraped"
 
 #### Get Scraped Resources
 ```bash
-curl -X GET "http://localhost:8000/import/scrapedresources"
+curl -X GET "http://localhost:8000/scrapedresources"
 ```
 
 ## 🤝 Contributing
